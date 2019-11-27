@@ -1,0 +1,46 @@
+---
+title: "Continuously delivered Report"
+author: "Robert Birkelbach"
+date: "11/27/2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup libraries and data
+
+
+
+```{r setup_libraries_and_data, collapse = TRUE}
+library(rio)
+library(tibble)
+library(here)
+library(lme4)
+library(ggplot2)
+library(sjPlot)
+theme_set(theme_sjplot())
+data_raw <- as_tibble(import(here("data-raw/popular.dta")))
+```
+
+## View the head of the dataset
+
+```{r data_raw}
+data_raw
+```
+## Statistical analysis
+
+
+```{r multilevel_model}
+model_1 <- lmer(popular ~ sex + texp + sex * texp + (1 + sex | school), 
+  data = data_raw)
+summary(model_1)
+plot_model(model_1, sort.est = TRUE)
+ggplot(data_raw, aes(x=sex, y=popular, group=school))+
+  stat_smooth(method="lm", se=FALSE, size=.5, color="springgreen") + 
+  stat_smooth(aes(group=1), method="lm", color="blue", size=1.5 )
+```
+
