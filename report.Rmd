@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r setup_libraries_and_data, collapse = TRUE}
-library(rio)
+library(haven)
 library(tibble)
 library(here)
 library(lme4)
@@ -30,7 +30,7 @@ save_object(object = "data-raw/popular.dta",
   bucket = "continuous-report-delivery-public", region = "us-east-2",
   check_region = FALSE)
 setwd(here())
-data_raw <- as_tibble(import(here("data-raw/popular.dta")))
+data_raw <- as_tibble(read_dta(here("data-raw/popular.dta")))
 ```
 
 ## View the head of the dataset
