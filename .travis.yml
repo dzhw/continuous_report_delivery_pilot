@@ -1,0 +1,15 @@
+sudo: required
+language: R
+services:
+  - docker
+before_install:
+  - docker pull rocker/r-ver:3.6.1
+install:
+  - sudo apt-get update -qq
+  - pip install --user awscli
+  - mkdir ~/.aws
+  - cp ./deploy/aws/* ~/.aws/
+  - echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+  - echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
+  - docker tag continuous-report-delivery-rocker:latest 125849576382.dkr.ecr.eu-central-1.amazonaws.com/continuous-report-delivery-rocker:latest
+  - docker push 125849576382.dkr.ecr.eu-central-1.amazonaws.com/continuous-report-delivery-rocker:latest
