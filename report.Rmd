@@ -27,7 +27,7 @@ theme_set(theme_sjplot())
 dir.create(file.path("data-raw"))
 setwd(here("data-raw"))
 save_object(object = "data-raw/popular.dta",
-  bucket = "continuous-report-delivery-public", region = "us-east-2",
+  bucket = Sys.getenv("bucket_name"), region = "eu-central-1",
   check_region = FALSE)
 setwd(here())
 data_raw <- as_tibble(read_dta(here("data-raw/popular.dta")))
