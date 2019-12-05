@@ -1,14 +1,21 @@
 sudo: required
+language: python
 services:
-  - docker
+- docker
+env:
+  global:
+  - DOCKER_REPO=continuous-report-delivery-rocker
+  - EB_REGION="eu-west-1"
+  - secure: travisEncryptedAWS_ACCOUNT_ID
+  - secure: travisEncryptedAWS_ACCESS_KEY_ID
+  - secure: travisEncryptedAWS_SECRET_ACCESS_KEY
 before_install:
-  - docker pull rocker/r-ver:3.6.1
-install:
-  - sudo apt-get update -qq
-  - pip install --user awscli
-  - mkdir ~/.aws
-  - cp ./deploy/aws/* ~/.aws/
-  - echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
-  - echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
-  - docker tag continuous-report-delivery-rocker:latest 125849576382.dkr.ecr.eu-central-1.amazonaws.com/continuous-report-delivery-rocker:latest
-  - docker push 125849576382.dkr.ecr.eu-central-1.amazonaws.com/continuous-report-delivery-rocker:latest
+- pip install awscli
+- export PATH=$PATH:$HOME/.local/bin
+script:
+- docker build -t $DOCKER_REPO .
+deploy:
+  provider: script
+  script: bash docker_push.sh
+  on:
+    branch: master
