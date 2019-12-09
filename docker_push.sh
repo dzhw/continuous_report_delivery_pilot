@@ -19,9 +19,8 @@ VERSION="${TIMESTAMP}-${TRAVIS_COMMIT}"
 TARGET_IMAGE_VERSIONED="${TARGET_IMAGE}:${VERSION}"
 
 # making sure correct region is set
-aws configure set default.region ${EB_REGION}
 cp ./.aws/config ~/.aws/config
-cp ./.aws/config ~/.aws/credentials
+cp ./.aws/credentials ~/.aws/credentials
 echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
 echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
 # Push image to ECR
