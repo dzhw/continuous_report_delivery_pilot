@@ -12,6 +12,9 @@ env:
 before_install:
 - pip install awscli
 - export PATH=$PATH:$HOME/.local/bin
+- mkdir ~/.aws
+- cp ./.aws/config ~/.aws/config
+- cp ./.aws/credentials ~/.aws/credentials
 script:
 - docker build -t $DOCKER_REPO .
 deploy:
