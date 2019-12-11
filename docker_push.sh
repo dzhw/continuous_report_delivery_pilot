@@ -17,10 +17,6 @@ VERSION="${TIMESTAMP}-${TRAVIS_COMMIT}"
 # it is useful if you want to reference this particular version
 # in additional commands like deployment of new Elasticbeanstalk version
 TARGET_IMAGE_VERSIONED="${TARGET_IMAGE}:${VERSION}"
-aws_access_key_id="${AWS_ACCESS_KEY_ID}"
-aws_secret_access_key="{$AWS_SECRET_ACCESS_KEY}"
-echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
-echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
 # making sure correct region is set
 aws configure set default.region ${EB_REGION} --profile "administrator"
 # Push image to ECR
