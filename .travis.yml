@@ -12,10 +12,6 @@ env:
 install:
 - pip install awscli
 - export PATH=$PATH:$HOME/.local/bin
-- mkdir ~/.aws
-- cp ./deploy/aws/* ~/.aws/
-- echo "AWS_ACCESS_KEY_ID = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
-- echo "AWS_SECRET_ACCESS_KEY = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
 script:
 - eval $(aws ecr get-login --region eu-west-1 --profile administrator)
 - docker build -t $DOCKER_REPO .
