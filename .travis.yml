@@ -6,9 +6,6 @@ env:
   global:
   - DOCKER_REPO=continuous-report-delivery-rocker
   - EB_REGION="eu-west-1"
-  - secure: AWS_ACCOUNT_ID
-  - secure: AWS_ACCESS_KEY_ID
-  - secure: AWS_SECRET_ACCESS_KEY
 before_install:
 - pip install awscli
 - export PATH=$PATH:$HOME/.local/bin
