@@ -19,14 +19,14 @@ VERSION="${TIMESTAMP}-${TRAVIS_COMMIT}"
 TARGET_IMAGE_VERSIONED="${TARGET_IMAGE}:${VERSION}"
 
 # making sure correct region is set
-aws configure set default.region ${EB_REGION} --profile "Admin"
+aws configure set default.region ${EB_REGION} --profile "administrator"
 # Push image to ECR
 ###################
 
 # I'm speculating it obtains temporary access token
 # it expects aws access key and secret set
 # in environmental vars
-$(aws ecr get-login --no-include-email --region eu-central-1 --profile Admin)
+$(aws ecr get-login --no-include-email --region eu-central-1 --profile administrator)
 
 # update latest version
 docker tag ${SOURCE_IMAGE} ${TARGET_IMAGE_LATEST}

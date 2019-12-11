@@ -2,6 +2,6 @@
 region = eu-central-1
 output = json
 
-[profile continuous-report-delivery]
+[profile administrator]
 role_arn = arn:aws:iam::125849576382:role/Admin
 source_profile = default
