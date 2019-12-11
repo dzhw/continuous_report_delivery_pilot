@@ -19,6 +19,7 @@ VERSION="${TIMESTAMP}-${TRAVIS_COMMIT}"
 TARGET_IMAGE_VERSIONED="${TARGET_IMAGE}:${VERSION}"
 
 # making sure correct region is set
+aws configure set default.region ${EB_REGION}
 # Push image to ECR
 ###################
 
