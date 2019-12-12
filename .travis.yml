@@ -12,7 +12,7 @@ env:
 install:
 - pip install awscli 
 - export PATH=$PATH:$HOME/.local/bin
-- cp ~/deploy/docker-credential-ecr-login ~/.local/bin/docker-credential-ecr-login
+- cp ./deploy/docker-credential-ecr-login ~/.local/bin/docker-credential-ecr-login
 - chmod +x ~/.local/bin/docker-credential-ecr-login
 - mkdir ~/.aws
 - cp ./deploy/aws/* ~/.aws/
