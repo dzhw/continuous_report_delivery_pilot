@@ -25,7 +25,7 @@ aws configure set default.region ${EB_REGION} --profile "administrator"
 # I'm speculating it obtains temporary access token
 # it expects aws access key and secret set
 # in environmental vars
-eval $(aws --profile administrator ecr get-login --region eu-central-1 --no-include-email | sed 's|https://||')
+$(aws --profile administrator ecr get-login --region eu-central-1 --no-include-email)
 
 # update latest version
 docker tag ${SOURCE_IMAGE} ${TARGET_IMAGE_LATEST}
