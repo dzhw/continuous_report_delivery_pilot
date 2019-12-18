@@ -28,9 +28,6 @@ aws configure set default.region ${EB_REGION} --profile "administrator"
 $(aws --profile administrator ecr get-login --region eu-central-1 --no-include-email)
 
 # update latest version
-docker tag ${SOURCE_IMAGE} ${TARGET_IMAGE_LATEST}
-docker push ${TARGET_IMAGE_LATEST}
+docker tag continuous-report-delivery-rocker:latest 125849576382.dkr.ecr.eu-central-1.amazonaws.com/continuous-report-delivery-rocker:latest
 
-# push new version
-docker tag ${SOURCE_IMAGE} ${TARGET_IMAGE_VERSIONED}
-docker push ${TARGET_IMAGE_VERSIONED}
+docker push 125849576382.dkr.ecr.eu-central-1.amazonaws.com/continuous-report-delivery-rocker:latest

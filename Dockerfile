@@ -69,3 +69,5 @@ RUN apt-get update \
   && R -e 'remotes::install_github("dzhw/aws.s3")' \
   && mkdir ~/data-raw
   COPY /report.Rmd /report.Rmd
+  COPY /knit_report.R /knit_report.R
+  ENTRYPOINT["/run.sh"]
