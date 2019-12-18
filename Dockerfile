@@ -70,4 +70,4 @@ RUN apt-get update \
   && mkdir ~/data-raw
   COPY /report.Rmd /report.Rmd
   COPY /knit_report.R /knit_report.R
-  ENTRYPOINT["/run.sh"]
+  ENTRYPOINT ["/run.sh"]
