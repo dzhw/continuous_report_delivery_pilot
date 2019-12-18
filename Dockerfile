@@ -65,7 +65,7 @@ RUN apt-get update \
   && echo "PATH=${PATH}" >> /usr/local/lib/R/etc/Renviron \
   ## Currently (2017-06-06) need devel PKI for ssl issue: https://github.com/s-u/PKI/issues/19
   && install2.r --error PKI \
-  && R -e 'install.packages(c("haven", "rmarkdown", "here", "lme4", "ggplot2", "sjmisc", "sjstats", "sjPlot"), dependencies=c("Depends", "Imports", "LinkingTo", "remotes"))' \
+  && R -e 'install.packages(c("haven", "rmarkdown", "here", "lme4", "ggplot2", "sjmisc", "sjstats", "sjPlot", "remotes"), dependencies=c("Depends", "Imports", "LinkingTo"))' \
   && R -e 'remotes::install_github("dzhw/aws.s3")' \
   && mkdir ~/data-raw
   COPY /report.Rmd /report.Rmd
