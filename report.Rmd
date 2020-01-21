@@ -24,16 +24,14 @@ library(ggplot2)
 library(sjPlot)
 library(aws.s3)
 
-is_blank <- function(value) {
-  return(is.null(value) || value == "")
-}
-
+source("is_blank.R")
 theme_set(theme_sjplot())
 dir.create(file.path("data-raw"))
+
 setwd(here("data-raw"))
 if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
   save_object(object = "data-raw/popular.dta",
-  bucket = "continuous-report-delivery-ffm-public", 
+  bucket = "continuous-report-delivery-ffm-public",
   region = "eu-central-1", ignore_credentials = TRUE)
 } else {
 save_object(object = "data-raw/popular.dta",
@@ -52,12 +50,12 @@ data_raw
 
 
 ```{r multilevel_model}
-model_1 <- lmer(popular ~ sex + texp + sex * texp + (1 + sex | school), 
+model_1 <- lmer(popular ~ sex + texp + sex * texp + (1 + sex | school),
   data = data_raw)
 summary(model_1)
 plot_model(model_1, sort.est = TRUE)
 ggplot(data_raw, aes(x=sex, y=popular, group=school))+
-  stat_smooth(method="lm", se=FALSE, size=.5, color="springgreen") + 
+  stat_smooth(method="lm", se=FALSE, size=.5, color="springgreen") +
   stat_smooth(aes(group=1), method="lm", color="blue", size=1.5 )
 ```
 

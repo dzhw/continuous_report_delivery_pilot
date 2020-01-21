@@ -1,2 +1,3 @@
 #!/bin/sh
-R -e "knitr::knit('report.Rmd', output = 'report.html')"
+R -e "source('knit_report.R')"
+
