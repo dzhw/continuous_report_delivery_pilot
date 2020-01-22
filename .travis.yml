@@ -23,3 +23,8 @@ deploy:
   script: bash docker_push.sh
   on:
     branch: master
+after_deploy: 
+  provider: script
+  script: bash run-task.sh
+  on:
+    branch: master
