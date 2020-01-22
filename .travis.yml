@@ -20,8 +20,8 @@ script:
 - docker build -t $DOCKER_REPO .
 deploy:
   provider: script
-  script: docker_push.sh
+  script: ./docker_push.sh
   on:
     branch: master
 after_deploy: 
-  - run-task.sh
+  - ./run-task.sh
