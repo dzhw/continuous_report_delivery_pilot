@@ -1,7 +1,7 @@
 library(aws.s3)
 library(here)
 
-source("is_blank.R")
+source(here::here("is_blank.R"))
 dir.create(file.path("data-raw"))
 
 setwd(here("data-raw"))
@@ -15,7 +15,7 @@ if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
     bucket = "continuous-report-delivery-ffm-private", 
     region = "eu-central-1", verbose = TRUE)
 }
-knitr::knit(here::here("report.Rmd"), output = "report.html")
+rmarkdown::render(here::here("report.Rmd"))
 if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
   file.copy("report.html", "/tmp/report.html")
 } else {

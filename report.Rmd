@@ -11,11 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Setup libraries and data
-
-
-
-```{r setup_libraries_and_data, collapse = TRUE}
+```{r setup_libraries_and_data, collapse = TRUE, echo = FALSE, message=FALSE, warning=FALSE}
 library(haven)
 library(tibble)
 library(here)
@@ -37,7 +33,7 @@ data_raw
 ## Statistical analysis
 
 
-```{r multilevel_model}
+```{r multilevel_model, message=FALSE, warning=FALSE}
 model_1 <- lmer(popular ~ sex + texp + sex * texp + (1 + sex | school),
   data = data_raw)
 summary(model_1)
