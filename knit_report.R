@@ -20,8 +20,8 @@ if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
   file.copy("report.html", "/tmp/report.html")
 } else {
   print(getwd())
-  put_object(file = "report.html",
-    object = "report-test.html",
+  put_object(file = here::here("report.html"),
+    object = "report.html",
     bucket = "continuous-report-delivery-ffm-private",
     region = "eu-central-1",
     verbose = TRUE)
