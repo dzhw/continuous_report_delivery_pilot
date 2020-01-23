@@ -11,5 +11,4 @@ FROM rocker/verse:3.6.1
   COPY /is_blank.R /is_blank.R
   COPY /knit_report.R /knit_report.R
   COPY /run.sh /run.sh
-  COPY /.slackr /.slackr
   ENTRYPOINT ["/run.sh"]
