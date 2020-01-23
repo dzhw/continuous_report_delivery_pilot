@@ -12,15 +12,16 @@ if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
 } else {
   print("getting private data")
   save_object(object = "data-raw/popular.dta",
-    bucket = "continuous-report-delivery-ffm-private", 
+    bucket = "continuous-report-delivery-ffm-private",
     region = "eu-central-1", verbose = TRUE)
 }
 rmarkdown::render(here::here("report.Rmd"))
 if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
   file.copy("report.html", "/tmp/report.html")
 } else {
+  print(getwd())
   put_object(file = "report.html",
-    object = "report.html",
+    object = "report-test.html",
     bucket = "continuous-report-delivery-ffm-private",
     region = "eu-central-1",
     verbose = TRUE)
