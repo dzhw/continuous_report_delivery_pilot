@@ -1,10 +1,14 @@
 library(aws.s3)
 library(here)
-
+library(slackr)
 source(here::here("is_blank.R"))
 dir.create(file.path("data-raw"))
-
+slackr_setup(here::here(".slackr"))
 setwd(here("data-raw"))
+slackr_setup(channel = "mdm-devops", username = "continuous-report-delivery-bot",
+  icon_emoji = "", incoming_webhook_url = Sys.getenv("incoming_webhook_url"),
+  api_token = "slack_api_token")
+
 if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
   save_object(object = "data-raw/popular.dta",
   bucket = "continuous-report-delivery-ffm-public",
@@ -18,6 +22,7 @@ if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
 rmarkdown::render(here::here("report.Rmd"))
 if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
   file.copy("report.html", "/tmp/report.html")
+  textSlackr("Public report finished", channel = "mdm-devops")
 } else {
   print(getwd())
   put_object(file = here::here("report.html"),
@@ -25,5 +30,6 @@ if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
     bucket = "continuous-report-delivery-ffm-private",
     region = "eu-central-1",
     verbose = TRUE)
-}
+  textSlackr("Private report finished", channel = "mdm-devops")
 
+}
