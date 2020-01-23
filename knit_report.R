@@ -15,7 +15,7 @@ if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
     bucket = "continuous-report-delivery-ffm-private", 
     region = "eu-central-1", verbose = TRUE)
 }
-knitr::knit("report.Rmd", output = "report.html")
+knitr::knit(here::here("report.Rmd"), output = "report.html")
 if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
   file.copy("report.html", "/tmp/report.html")
 } else {
