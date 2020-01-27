@@ -29,7 +29,7 @@ if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
   slackr_setup(channel = "mdm-devops", username = "continuous-report-delivery-bot",
     icon_emoji = "", incoming_webhook_url = Sys.getenv("incoming_webhook_url"),
     api_token = Sys.getenv("slack_api_token"))
-  textSlackr(paste0("Private report finished, download here: https://s3.console.aws.amazon.com/s3/buckets/continuous-report-delivery-ffm-private/?region=eu-central-1&tab=overview", 
+  textSlackr("Private report finished, download here: https://s3.console.aws.amazon.com/s3/buckets/continuous-report-delivery-ffm-private/?region=eu-central-1&tab=overview", 
   channel = "mdm-devops")
 
 }
