@@ -28,8 +28,7 @@ if (is_blank(Sys.getenv("AWS_EXECUTION_ENV"))) {
     verbose = TRUE)
   slackr_setup(channel = "mdm-devops", username = "continuous-report-delivery-bot",
     icon_emoji = "", incoming_webhook_url = Sys.getenv("incoming_webhook_url"),
-    api_token = "slack_api_token")
-
+    api_token = Sys.getenv("slack_api_token"))
   textSlackr("Private report finished", channel = "mdm-devops")
 
 }
