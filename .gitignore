@@ -3,3 +3,9 @@ data-raw/popular.dta
 report.html
 report.pdf
 .Rproj.user
+.Rhistory
+.directory
+Rplots.pdf
+continuous_report_delivery_pilot.Rproj
+figure/
+popular.dta
